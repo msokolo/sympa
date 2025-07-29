@@ -3288,6 +3288,7 @@ sub _getCharset {
 
 sub dmarc_protect {
     my $self = shift;
+    my $rm_sig = shift;
 
     my $list = $self->{context};
     return unless ref $list eq 'Sympa::List';
@@ -3334,12 +3335,14 @@ sub dmarc_protect {
     my $listtype = $self->{listtype} || '';
 
     # Remove any DKIM signatures we find
-    if ($dkim_signature) {
-        $self->add_header('X-Original-DKIM-Signature', $dkim_signature);
-        $self->delete_header('DKIM-Signature');
-        $self->delete_header('DomainKey-Signature');
-        $log->syslog('debug',
-            'Removing previous DKIM and DomainKey signatures');
+    if ( $rm_sig ) {
+        if ($dkim_signature) {
+            $self->add_header('X-Original-DKIM-Signature', $dkim_signature);
+            $self->delete_header('DKIM-Signature');
+            $self->delete_header('DomainKey-Signature');
+            $log->syslog('debug',
+                'Removing previous DKIM and DomainKey signatures');
+        }
     }
 
     # Identify default new From address

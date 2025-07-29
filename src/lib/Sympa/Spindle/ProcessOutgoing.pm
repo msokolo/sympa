@@ -370,7 +370,7 @@ sub _twist {
     #  -7 DKIM signing and ARC sealing
 
     if ($message->{shelved}{dmarc_protect}) {
-        $message->dmarc_protect;
+        $message->dmarc_protect($rm_sig);
     }
 
     my %arc =
@@ -386,13 +386,11 @@ sub _twist {
         or $message->{shelved}{tracking}) {
         # message needs personalization
         foreach my $rcpt (@rcpts) {
-            __twist_one($message, $rcpt, {%arc}, {%dkim},
-                $arc_enabled || $dkim_enabled);
+            __twist_one($message, $rcpt, {%arc}, {%dkim}, $rm_sig);
         }
     } else {
         # message doesn't need personalization, so can be sent by packet.
-        __twist_one($message, [@rcpts], {%arc}, {%dkim},
-            $arc_enabled || $dkim_enabled);
+        __twist_one($message, [@rcpts], {%arc}, {%dkim}, $rm_sig);
     }
 
     1;
