@@ -47,6 +47,7 @@ if ($EVAL_ERROR) {
 # Constructor for Class::Singleton.
 sub _new_instance {
     my $class = shift;
+    $log->syslog('err', 'tujestem %s','Sympa.Mailer._new_instance');
 
     bless {
         _pids      => {},
