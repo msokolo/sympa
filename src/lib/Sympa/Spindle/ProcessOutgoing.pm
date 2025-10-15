@@ -381,11 +381,10 @@ sub _twist {
         if %arc
         or $message->{shelved}{dkim_sign};
 
-    use Data::Dumper;
     my %tstdump = ( a => 'b', c => 'd' );
-    $log->syslog('err', 'tujestem Dumper %s',Dumper(%tstdump));
-    $log->syslog('err', 'tujestem dkim   %s',Dumper(%dkim));
-    $log->syslog('err', 'tujestem arc    %s',Dumper(%arc));
+    $log->syslog('err', 'tujestem Dumper %s',%tstdump);
+    $log->syslog('err', 'tujestem dkim   %s',%dkim);
+    $log->syslog('err', 'tujestem arc    %s',%arc);
     $log->syslog('err', 'tujestem rm_sig %s',$rm_sig);
     if (   $message->{shelved}{merge}
         or $message->{shelved}{smime_encrypt}
