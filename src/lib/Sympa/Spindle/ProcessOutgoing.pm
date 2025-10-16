@@ -383,9 +383,9 @@ sub _twist {
 
     if ( %dkim ) {
         $log->syslog('err', 'tujestem dkim   %s','aqq');
-        $log->syslog('err', 'tujestem dkim d %s',$dkim(d));
-        $log->syslog('err', 'tujestem dkim i %s',$dkim(i));
-        $log->syslog('err', 'tujestem dkim s %s',$dkim(s));
+        $log->syslog('err', 'tujestem dkim d %s',$dkim{d});
+        $log->syslog('err', 'tujestem dkim i %s',$dkim{i});
+        $log->syslog('err', 'tujestem dkim s %s',$dkim{s});
     }
     if ( %arc ) {
         $log->syslog('err', 'tujestem arc  d %s','aqq');
