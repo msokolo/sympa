@@ -373,6 +373,9 @@ sub _twist {
         $message->dmarc_protect($rm_sig);
     }
 
+    $log->syslog('err', 'tujestem arc_enabled  %s',$arc_enabled);
+    $log->syslog('err', 'tujestem shelved arc_cv %s',$message->{shelved}{arc_cv});
+    $log->syslog('err', 'tujestem shelved dkim_sign %s',$message->{shelved}{dkim_sign});
     my %arc =
         Sympa::Tools::DKIM::get_arc_parameters($message->{context},
         $message->{shelved}{arc_cv})
