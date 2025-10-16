@@ -382,10 +382,10 @@ sub _twist {
         or $message->{shelved}{dkim_sign};
 
     if ( %dkim ) {
-        $log->syslog('err', 'tujestem dkim d %s','aqq');
-#        $log->syslog('err', 'tujestem dkim d %s',$dkimi(d));
-#        $log->syslog('err', 'tujestem dkim i %s',$dkimi(i));
-#        $log->syslog('err', 'tujestem dkim s %s',$dkimi(s));
+        $log->syslog('err', 'tujestem dkim   %s','aqq');
+        $log->syslog('err', 'tujestem dkim d %s',$dkimi(d));
+        $log->syslog('err', 'tujestem dkim i %s',$dkimi(i));
+        $log->syslog('err', 'tujestem dkim s %s',$dkimi(s));
     }
     if ( %arc ) {
         $log->syslog('err', 'tujestem arc  d %s','aqq');
