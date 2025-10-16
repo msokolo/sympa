@@ -387,8 +387,8 @@ sub _twist {
         $log->syslog('err', 'tujestem dkim s %s',$dkim{s});
     }
     if ( %arc ) {
-        $log->syslog('err', 'tujestem arc  d %s',$arc(d));
-        $log->syslog('err', 'tujestem arc  s %s',$arc(s));
+        $log->syslog('err', 'tujestem arc  d %s',$arc{d});
+        $log->syslog('err', 'tujestem arc  s %s',$arc{s});
     }
     $log->syslog('err', 'tujestem rm_sig %s',$rm_sig);
 #    $log->syslog('err', 'tujestem merge %s',$message->{shelved}{merge});
