@@ -385,11 +385,13 @@ sub _twist {
         or $message->{shelved}{dkim_sign};
 
     if ( %dkim ) {
+        $log->syslog('err', 'tujestem dkim %s','Y');
         $log->syslog('err', 'tujestem dkim d %s',$dkim{d});
         $log->syslog('err', 'tujestem dkim i %s',$dkim{i});
         $log->syslog('err', 'tujestem dkim s %s',$dkim{s});
     }
     if ( %arc ) {
+        $log->syslog('err', 'tujestem arc  %s','Y');
         $log->syslog('err', 'tujestem arc  d %s',$arc{d});
         $log->syslog('err', 'tujestem arc  s %s',$arc{s});
     }
