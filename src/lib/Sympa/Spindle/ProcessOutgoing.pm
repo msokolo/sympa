@@ -388,9 +388,9 @@ sub _twist {
     $log->syslog('err', 'tujestem arc  i %s',$arc(i));
     $log->syslog('err', 'tujestem arc  s %s',$arc(s));
     $log->syslog('err', 'tujestem rm_sig %s',$rm_sig);
-    $log->syslog('err', 'tujestem merge %s',$message->{shelved}{merge});
-    $log->syslog('err', 'tujestem smime_encrypt %s',$message->{shelved}{smime_encrypt});
-    $log->syslog('err', 'tujestem tracking %s',$message->{shelved}{tracking});
+#    $log->syslog('err', 'tujestem merge %s',$message->{shelved}{merge});
+#    $log->syslog('err', 'tujestem smime_encrypt %s',$message->{shelved}{smime_encrypt});
+#    $log->syslog('err', 'tujestem tracking %s',$message->{shelved}{tracking});
     if (   $message->{shelved}{merge}
         or $message->{shelved}{smime_encrypt}
         or $message->{shelved}{tracking}) {
