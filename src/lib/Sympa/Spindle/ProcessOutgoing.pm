@@ -382,14 +382,16 @@ sub _twist {
         or $message->{shelved}{dkim_sign};
 
     if ( %dkim ) {
-        $log->syslog('err', 'tujestem dkim d %s',$dkimi(d));
-        $log->syslog('err', 'tujestem dkim i %s',$dkimi(i));
-        $log->syslog('err', 'tujestem dkim s %s',$dkimi(s));
+        $log->syslog('err', 'tujestem dkim d %s','aqq');
+#        $log->syslog('err', 'tujestem dkim d %s',$dkimi(d));
+#        $log->syslog('err', 'tujestem dkim i %s',$dkimi(i));
+#        $log->syslog('err', 'tujestem dkim s %s',$dkimi(s));
     }
     if ( %arc ) {
-        $log->syslog('err', 'tujestem arc  d %s',$arc(d));
-        $log->syslog('err', 'tujestem arc  i %s',$arc(i));
-        $log->syslog('err', 'tujestem arc  s %s',$arc(s));
+        $log->syslog('err', 'tujestem arc  d %s','aqq');
+#        $log->syslog('err', 'tujestem arc  d %s',$arc(d));
+#        $log->syslog('err', 'tujestem arc  i %s',$arc(i));
+#        $log->syslog('err', 'tujestem arc  s %s',$arc(s));
     }
     $log->syslog('err', 'tujestem rm_sig %s',$rm_sig);
 #    $log->syslog('err', 'tujestem merge %s',$message->{shelved}{merge});
