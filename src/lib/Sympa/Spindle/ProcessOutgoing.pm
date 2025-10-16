@@ -381,20 +381,27 @@ sub _twist {
         if %arc
         or $message->{shelved}{dkim_sign};
 
-    my %tstdump = ( a => 'b', c => 'd' );
-    $log->syslog('err', 'tujestem Dumper %s',%tstdump);
-    $log->syslog('err', 'tujestem dkim   %s',%dkim);
-    $log->syslog('err', 'tujestem arc    %s',%arc);
+    $log->syslog('err', 'tujestem dkim d %s',$dkimi(d));
+    $log->syslog('err', 'tujestem dkim i %s',$dkimi(i));
+    $log->syslog('err', 'tujestem dkim s %s',$dkimi(s));
+    $log->syslog('err', 'tujestem arc  d %s',$arc(d));
+    $log->syslog('err', 'tujestem arc  i %s',$arc(i));
+    $log->syslog('err', 'tujestem arc  s %s',$arc(s));
     $log->syslog('err', 'tujestem rm_sig %s',$rm_sig);
+    $log->syslog('err', 'tujestem merge %s',$message->{shelved}{merge});
+    $log->syslog('err', 'tujestem smime_encrypt %s',$message->{shelved}{smime_encrypt});
+    $log->syslog('err', 'tujestem tracking %s',$message->{shelved}{tracking});
     if (   $message->{shelved}{merge}
         or $message->{shelved}{smime_encrypt}
         or $message->{shelved}{tracking}) {
         # message needs personalization
+        $log->syslog('err', 'tujestem shelved %s','Y');
         foreach my $rcpt (@rcpts) {
             __twist_one($message, $rcpt, {%arc}, {%dkim}, $rm_sig);
         }
     } else {
         # message doesn't need personalization, so can be sent by packet.
+        $log->syslog('err', 'tujestem shelved %s','N');
         __twist_one($message, [@rcpts], {%arc}, {%dkim}, $rm_sig);
     }
 
