@@ -84,7 +84,7 @@ sub spin {
         if ($message and $handle) {
             $self->{start_time} = Time::HiRes::time();
 
-            $log->syslog('err', 'tujestem message: %s %s',reftype($message),ref($message));
+            $log->syslog('err', 'tujestem message: %s',ref($message));
             my $status = $self->_twist($message);
             # If the result is arrayref, splice to the classes in it.
             while (ref $status eq 'ARRAY' and @$status) {
