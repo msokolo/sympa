@@ -85,6 +85,8 @@ sub spin {
             $self->{start_time} = Time::HiRes::time();
 
             $log->syslog('err', 'tujestem message: %s',ref($message));
+            my $tujemesa = $message->dup();
+            $log->syslog('err', 'tujestem encoding: %s',$tujemesa->get_header('Content-Transfer-Encoding'));
             my $status = $self->_twist($message);
             # If the result is arrayref, splice to the classes in it.
             while (ref $status eq 'ARRAY' and @$status) {
