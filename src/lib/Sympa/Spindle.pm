@@ -32,6 +32,9 @@ use warnings;
 use English qw(-no_match_vars);
 use Time::HiRes qw();
 
+# tujestem
+my $log     = Sympa::Log->instance;
+
 sub new {
     my $class   = shift;
     my %options = @_;
@@ -80,6 +83,7 @@ sub spin {
         if ($message and $handle) {
             $self->{start_time} = Time::HiRes::time();
 
+            $log->syslog('err', 'tujestem message: %s %s',reftype($message),ref($message));
             my $status = $self->_twist($message);
             # If the result is arrayref, splice to the classes in it.
             while (ref $status eq 'ARRAY' and @$status) {
