@@ -33,6 +33,7 @@ use English qw(-no_match_vars);
 use Time::HiRes qw();
 
 # tujestem
+use Sympa::Log;
 my $log     = Sympa::Log->instance;
 
 sub new {
