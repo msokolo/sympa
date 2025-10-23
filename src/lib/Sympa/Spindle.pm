@@ -86,6 +86,7 @@ sub spin {
 
 #            use Sympa::Message;
             $log->syslog('err', 'tujestem message: %s',ref($message));
+            $log->syslog('err', 'tujestem message encoding: %s',ref($messagea->get_header('Content-Transfer-Encoding')));
 #            my $tujemesa = $message->dup();
 #            $log->syslog('err', 'tujestem message encoding: %s',$tujemesa->get_header('Content-Transfer-Encoding'));
 #            $log->syslog('err', 'tujestem message encoding: %s',$message->get_header('Content-Transfer-Encoding'));
