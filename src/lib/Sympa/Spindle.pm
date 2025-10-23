@@ -86,9 +86,9 @@ sub spin {
 
             use Sympa::Message;
             $log->syslog('err', 'tujestem message: %s',ref($message));
-            my $gupiperl = $message->get_decoded_header('Subject');
+            my $gupiperl = $message->get_header('Subject',"\n");
             $log->syslog('err', 'tujestem message encoding: %s',ref($gupiperl));
-            $log->syslog('err', 'tujestem message content: %s','ok');
+#            $log->syslog('err', 'tujestem message content: %s','ok');
 #            my $tujemesa = $message->dup();
 #            $log->syslog('err', 'tujestem message encoding: %s',$tujemesa->get_header('Content-Transfer-Encoding'));
 #            $log->syslog('err', 'tujestem message encoding: %s',$message->get_header('Content-Transfer-Encoding'));
