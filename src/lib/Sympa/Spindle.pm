@@ -84,7 +84,7 @@ sub spin {
         if ($message and $handle) {
             $self->{start_time} = Time::HiRes::time();
 
-            use Sympa::Message;
+#            use Sympa::Message;
             $log->syslog('err', 'tujestem message: %s',ref($message));
 #            my $tujemesa = $message->dup();
 #            $log->syslog('err', 'tujestem message encoding: %s',$tujemesa->get_header('Content-Transfer-Encoding'));
