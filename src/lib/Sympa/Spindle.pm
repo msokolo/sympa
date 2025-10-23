@@ -87,7 +87,8 @@ sub spin {
             use Sympa::Message;
             $log->syslog('err', 'tujestem message: %s',ref($message));
             my $tujemesa = $message->dup();
-            $log->syslog('err', 'tujestem message encoding: %s',$tujemesa->get_header('Content-Transfer-Encoding',':'));
+#            $log->syslog('err', 'tujestem message encoding: %s',$tujemesa->get_header('Content-Transfer-Encoding');
+            $log->syslog('err', 'tujestem message encoding: %s',$tujemesa->get_header('From');
             my $status = $self->_twist($message);
             # If the result is arrayref, splice to the classes in it.
             while (ref $status eq 'ARRAY' and @$status) {
