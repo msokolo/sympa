@@ -919,10 +919,10 @@ sub get_header {
     my $self  = shift;
     my $field = shift;
     my $sep   = shift;
-    $log->syslog('err', 'tujestem get_header: %s',"zero");
+#    $log->syslog('err', 'tujestem get_header: %s',"zero");
     die sprintf 'Second argument is not index but separator: "%s"', $sep
         if defined $sep and Scalar::Util::looks_like_number($sep);
-    $log->syslog('err', 'tujestem get_header: %s',"start");
+#    $log->syslog('err', 'tujestem get_header: %s',"start");
 
     my $hdr = $self->{_head};
 
