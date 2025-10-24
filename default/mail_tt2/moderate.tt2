@@ -1,7 +1,7 @@
 [%# moderate.tt2 ~%]
 From: [% fromlist %]
 To: [%"Moderator"|loc|mailbox("${list.name}-editor@${domain}",list.name)%]
-Subject: [%"Message for list %1 from %2 to be approved"|loc(list.name,msg_from)|qencode%]
+Subject: [%"Message for list %1 from %2 to be approved"|loc(list.name,msg_from)|qencode%] tujestem
 Reply-To: [% conf.email %]@[% domain %]
 [% IF spam_status != 'spam' -%]
 Content-Type: multipart/mixed; boundary="[% boundary %]"
@@ -52,7 +52,6 @@ REJECT [% list.name %] [% modkey %]
 [% IF spam_status != 'spam' -%]
 --[% boundary %]
 Content-Type: message/rfc822
-Content-Transfer-Encoding: 8bit
 Content-Disposition: inline
 X-Sympa-Attach: yes
 
