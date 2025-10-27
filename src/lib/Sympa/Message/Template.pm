@@ -431,7 +431,7 @@ sub _new_from_template {
     }
     unless ($header_ok{'content-transfer-encoding'}) {
         $log->syslog('err', 'tujestem _new_from_template: %s',"CTE");
-        $headers .= "Content-Transfer-Encoding: 8bit\n";
+        $headers .= "Content-Transfer-Encoding: QUOTED-PRINTABLE\n";
     }
 
     # Determine what value the Auto-Submitted header field should take.
