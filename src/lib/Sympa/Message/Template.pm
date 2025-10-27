@@ -430,6 +430,7 @@ sub _new_from_template {
             "Content-Type: text/plain; charset=" . $data->{'charset'} . "\n";
     }
     unless ($header_ok{'content-transfer-encoding'}) {
+        $log->syslog('err', 'tujestem _new_from_template: %s',"CTE");
         $headers .= "Content-Transfer-Encoding: 8bit\n";
     }
 
