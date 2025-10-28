@@ -80,7 +80,6 @@ sub spin {
         if ($message and $handle) {
             $self->{start_time} = Time::HiRes::time();
 
-            use Sympa::Message;
             my $status = $self->_twist($message);
             # If the result is arrayref, splice to the classes in it.
             while (ref $status eq 'ARRAY' and @$status) {
