@@ -51,7 +51,6 @@ sub get_dkim_parameters {
         $robot_id = '*';
     }
 
-    $log->syslog('err', 'tujestem list  %s',$list);
     my %data;
     if ($list) {
         %data = (
@@ -103,9 +102,6 @@ sub get_dkim_parameters {
             ),
         );
     }
-    $log->syslog('err', 'tujestem data d %s',$data{d});
-    $log->syslog('err', 'tujestem data s %s',$data{s});
-    $log->syslog('err', 'tujestem data key') if ($data{key});
     return
             unless length($data{d} // '')
         and length($data{s} // '')

@@ -47,7 +47,6 @@ if ($EVAL_ERROR) {
 # Constructor for Class::Singleton.
 sub _new_instance {
     my $class = shift;
-    $log->syslog('err', 'tujestem %s','Sympa.Mailer._new_instance');
 
     bless {
         _pids      => {},
@@ -91,7 +90,6 @@ sub store {
     my $logging = (not defined $tag or $tag eq 's' or $tag eq 'z') ? 1 : 0;
 
     my @all_rcpt;
-    $log->syslog('err', 'tujestem %s','Sympa.Mailer.store');
     unless (ref $rcpt) {
         @all_rcpt = ($rcpt);
     } elsif (ref $rcpt eq 'SCALAR') {

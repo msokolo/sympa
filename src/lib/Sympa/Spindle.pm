@@ -32,10 +32,6 @@ use warnings;
 use English qw(-no_match_vars);
 use Time::HiRes qw();
 
-# tujestem
-use Sympa::Log;
-my $log     = Sympa::Log->instance;
-
 sub new {
     my $class   = shift;
     my %options = @_;
@@ -85,13 +81,6 @@ sub spin {
             $self->{start_time} = Time::HiRes::time();
 
             use Sympa::Message;
-#            $log->syslog('err', 'tujestem message: %s',ref($message));
-#            my $gupiperl = $message->get_header('Content-Transfer-Encoding',"\n");
-#            $log->syslog('err', 'tujestem message encoding: %s',ref($gupiperl));
-#            $log->syslog('err', 'tujestem message content: %s','ok');
-#            my $tujemesa = $message->dup();
-#            $log->syslog('err', 'tujestem message encoding: %s',$tujemesa->get_header('Content-Transfer-Encoding'));
-#            $log->syslog('err', 'tujestem message encoding: %s',$message->get_header('Content-Transfer-Encoding'));
             my $status = $self->_twist($message);
             # If the result is arrayref, splice to the classes in it.
             while (ref $status eq 'ARRAY' and @$status) {

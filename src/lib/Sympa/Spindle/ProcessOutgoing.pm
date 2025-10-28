@@ -373,9 +373,6 @@ sub _twist {
         $message->dmarc_protect($rm_sig);
     }
 
-    $log->syslog('err', 'tujestem arc_enabled  %s',$arc_enabled);
-    $log->syslog('err', 'tujestem shelved arc_cv %s',$message->{shelved}{arc_cv});
-    $log->syslog('err', 'tujestem shelved dkim_sign %s',$message->{shelved}{dkim_sign});
     my %arc =
         Sympa::Tools::DKIM::get_arc_parameters($message->{context},
         $message->{shelved}{arc_cv})
@@ -384,32 +381,15 @@ sub _twist {
         if %arc
         or $message->{shelved}{dkim_sign};
 
-    if ( %dkim ) {
-        $log->syslog('err', 'tujestem dkim %s','Y');
-        $log->syslog('err', 'tujestem dkim d %s',$dkim{d});
-        $log->syslog('err', 'tujestem dkim i %s',$dkim{i});
-        $log->syslog('err', 'tujestem dkim s %s',$dkim{s});
-    }
-    if ( %arc ) {
-        $log->syslog('err', 'tujestem arc  %s','Y');
-        $log->syslog('err', 'tujestem arc  d %s',$arc{d});
-        $log->syslog('err', 'tujestem arc  s %s',$arc{s});
-    }
-    $log->syslog('err', 'tujestem rm_sig %s',$rm_sig);
-#    $log->syslog('err', 'tujestem merge %s',$message->{shelved}{merge});
-#    $log->syslog('err', 'tujestem smime_encrypt %s',$message->{shelved}{smime_encrypt});
-#    $log->syslog('err', 'tujestem tracking %s',$message->{shelved}{tracking});
     if (   $message->{shelved}{merge}
         or $message->{shelved}{smime_encrypt}
         or $message->{shelved}{tracking}) {
         # message needs personalization
-        $log->syslog('err', 'tujestem shelved %s','Y');
         foreach my $rcpt (@rcpts) {
             __twist_one($message, $rcpt, {%arc}, {%dkim}, $rm_sig);
         }
     } else {
         # message doesn't need personalization, so can be sent by packet.
-        $log->syslog('err', 'tujestem shelved %s','N');
         __twist_one($message, [@rcpts], {%arc}, {%dkim}, $rm_sig);
     }
 

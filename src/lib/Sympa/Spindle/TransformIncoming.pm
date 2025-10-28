@@ -113,7 +113,6 @@ sub _twist {
                 \$tag
             )
         ) {
-#            $log->syslog('err', 'tujestem custom_subject: %s',$list->{'admin'}{'custom_subject'});
             $log->syslog('err', 'Can\'t parse custom_subject of list %s: %s',
                 $list, $template->{last_error});
         } elsif (($tag // '') =~ /\S/) {
