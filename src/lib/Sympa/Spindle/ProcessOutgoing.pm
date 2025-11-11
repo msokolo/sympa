@@ -386,11 +386,13 @@ sub _twist {
         or $message->{shelved}{tracking}) {
         # message needs personalization
         foreach my $rcpt (@rcpts) {
-            __twist_one($message, $rcpt, {%arc}, {%dkim}, $rm_sig);
+            __twist_one($message, $rcpt, {%arc}, {%dkim},
+                ($arc_enabled || $dkim_enabled) && $rm_sig);
         }
     } else {
         # message doesn't need personalization, so can be sent by packet.
-        __twist_one($message, [@rcpts], {%arc}, {%dkim}, $rm_sig);
+        __twist_one($message, [@rcpts], {%arc}, {%dkim},
+            ($arc_enabled || $dkim_enabled) && $rm_sig);
     }
 
     1;
